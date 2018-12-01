@@ -1,0 +1,42 @@
+syntax = "proto3";
+package server;
+
+message Server {
+    string server_name = 1;
+    repeated string available_services = 2;
+}
+
+message RegisterReq {
+    Server server = 1;
+}
+
+message RegisterResp {
+    string result = 1;
+}
+
+message UnRegisterReq {
+    Server server = 1;
+}
+
+message UnRegisterResp {
+    string result = 1;
+}
+
+message PingReq {
+    Server server = 1;
+}
+
+message GetServerReq {
+    Server server = 1;
+}
+
+message GetServerResp {
+    Server server = 1;
+}
+
+service RegisterServer {
+    rpc Register(RegisterReq) returns (RegisterResp) {}
+    rpc UnRegister(UnRegisterReq) returns (UnRegisterResp) {}
+    rpc Ping(RegisterReq) returns (RegisterResp) {}
+    rpc GetServer(GetServerReq) returns (GetServerResp) {}
+}
